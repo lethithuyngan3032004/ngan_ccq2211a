@@ -22,5 +22,6 @@
             </div>
          </section>
       </div>
+  <!-- END CONTENT-->
 <?php require_once '../views/backend/footer.php'; ?>
-         <!-- END CONTENT-->
+       
