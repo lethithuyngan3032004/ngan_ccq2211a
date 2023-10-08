@@ -1,15 +1,30 @@
 <?php
-
 use App\Models\Brand;
-//SELECT*FROM orand
-$list = Brand::all();
+//status=0--> Rac
+//status=1--> Hiện thị lên trang người dùng
+//
+//SELECT * FROM brand wher status!=0 and id=1 order by created_at desc
+
+$list = brand::where('status','!=',0)->orderBy('Created_at','DESC')->get();
 ?>
-<?php require_once '../views/backend/header.php'; ?>
+<?php require_once "../views/backend/header.php";?>
+      <!-- CONTENT -->
+<form action ="index.php?option=brand&cat=process" method="post" enctype="multipart/form-data">
+<div class="content-wrapper">
+         <section class="content-header">
+            <div class="container-fluid">
+               <div class="row mb-2">
+                  <div class="col-sm-12">
+                     <h1 class="d-inline">Tất cả thương hiệu</h1>
+                  </div>
+               </div>
+            </div>
+         </section>
          <!-- Main content -->
          <section class="content">
             <div class="card">
                <div class="card-header text-right">
-                  <button class="btn btn-sm btn-success">
+                  <button class="btn btn-sm btn-success" type="submit" name="THEM">
                      <i class="fa fa-save" aria-hidden="true"></i>
                      Lưu
                   </button>
@@ -25,6 +40,11 @@ $list = Brand::all();
                            <label>Slug</label>
                            <input type="text" name="slug" class="form-control">
                         </div>
+                        </div class="mb-3">
+                         <label>Mô tả</label>
+                         <textarea name="description" class="form-control"></textarea>
+                     </div>
+                         </label>
                         <div class="mb-3">
                            <label>Hình đại diện</label>
                            <input type="file" name="image" class="form-control">
@@ -50,16 +70,18 @@ $list = Brand::all();
                               </tr>
                            </thead>
                            <tbody>
-                              <tr class="datarow">
+                          <?php if(count($list) > 0) : ?>
+                              <?php foreach($list as $item   ):?>
+                              <tr class="datarow">  
                                  <td>
                                     <input type="checkbox">
                                  </td>
                                  <td>
-                                    <img src="../public/images/brand/brand.jpg" alt="brand.jpg">
+                                    <img src="../public/images/brand/<?=$item->image;?>" alt="<?$item->image;?>">
                                  </td>
                                  <td>
                                     <div class="name">
-                                       Tên thương hiệu
+                                      <?= $item->name ; ?> 
                                     </div>
                                     <div class="function_style">
                                        <a href="#">Hiện</a> |
@@ -68,8 +90,10 @@ $list = Brand::all();
                                        <a href="#">Xoá</a>
                                     </div>
                                  </td>
-                                 <td>Slug</td>
+                                 <td><?= $item->slug?></td>
                               </tr>
+                              <?php endforeach;?>
+                              <?php endif;?>
                            </tbody>
                         </table>
                      </div>
@@ -78,5 +102,6 @@ $list = Brand::all();
             </div>
          </section>
       </div>
+</form>
       <!-- END CONTENT-->
       <?php require_once '../views/backend/footer.php'; ?>
