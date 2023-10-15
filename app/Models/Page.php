@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-class Orderdetail extends Model 
+class Page extends Model 
 {
-    protected $table = 'Orderdetail';
+    protected $table = 'page';
     public $timestamps = false;
 }

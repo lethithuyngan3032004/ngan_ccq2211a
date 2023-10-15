@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Thêm mới bài viết</title>
-   <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-      <link rel="stylesheet" href="../public/plugins/fontawesome-free/css/all.min.css">
-      <link rel="stylesheet" href="../public/dist/css/adminlte.min.css">
-      <link rel="stylesheet" href="../public/datatables/css/dataTables.min.css">
-      <link rel="stylesheet" href="../public/css/backend.css">
-</head>
+<?php
+use App\Models\Customer;
+
+$list = customer::where('status','!=',0)->orderBy('Created_at','DESC')->get();
+?>
+<?php require_once "../views/backend/header.php";?>
 
 <body class="hold-transition sidebar-mini">
    <div class="wrapper">
@@ -57,10 +50,10 @@
          </ul>
       </nav>
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
-         <a href="../backend/index.html" class="brand-link">
+         <a href="../backend/index.html" class="customer-link">
             <img src="../public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-               class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">QUẢN TRỊ</span>
+               class="customer-image img-circle elevation-3" style="opacity: .8">
+            <span class="customer-text font-weight-light">QUẢN TRỊ</span>
          </a>
          <div class="sidebar">
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -96,7 +89,7 @@
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="brand_index.html" class="nav-link">
+                           <a href="customer_index.html" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Thương hiệu</p>
                            </a>
@@ -255,82 +248,58 @@
             <div class="container-fluid">
                <div class="row mb-2">
                   <div class="col-sm-12">
-                     <h1 class="d-inline">Thêm mới bài viết</h1>
+                     <h1 class="d-inline">Tất cả khách hàng</h1>
+                     <a href="customer_create.html" class="btn btn-sm btn-primary">Thêm khách hàng</a>
                   </div>
                </div>
             </div>
          </section>
+         <!-- Main content -->
          <section class="content">
             <div class="card">
-               <div class="card-header text-right">
-                  <a href="post_index.html" class="btn btn-sm btn-info">
-                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                     Về danh sách
-                  </a>
-                  <button class="btn btn-sm btn-success" name="CHANGEADD">
-                     <i class="fa fa-save" aria-hidden="true"></i>
-                     Thêm bài viết
-                  </button>
+               <div class="card-header">
+                  Noi dung
                </div>
                <div class="card-body">
-                  <div class="row">
-                     <div class="col-md-9">
-                        <div class="mb-3">
-                           <label>Tiêu đề bài viết (*)</label>
-                           <input type="text" name="title" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                           <label>Slug</label>
-                           <input type="text" name="slug" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                           <label>Chi tiết (*)</label>
-                           <textarea name="detail" rows="5" class="form-control"></textarea>
-                        </div>
-                     </div>
-                     <div class="col-md-3">
-                        <div class="mb-3">
-                           <label>Chủ đề (*)</label>
-                           <select name="topic_id" class="form-control">
-                              <option value="">None</option>
-                              <option value="1">Tên danh mục</option>
-                           </select>
-                        </div>
-                        <div class="mb-3">
-                           <label>Hình đại diện</label>
-                           <input type="file" name="image" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                           <label>Trạng thái</label>
-                           <select name="status" class="form-control">
-                              <option value="1">Xuất bản</option>
-                              <option value="2">Chưa xuất bản</option>
-                           </select>
-                        </div>
-                     </div>
-                  </div>
+                  <table class="table table-bordered" id="mytable">
+                     <thead>
+                        <tr>
+                           <th class="text-center" style="width:30px;">
+                              <input type="checkbox">
+                           </th>
+                           <th class="text-center" style="width:130px;">Hình ảnh</th>
+                           <th>Họ tên</th>
+                           <th>Điện thoại</th>
+                           <th>Email</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="datarow">
+                           <td>
+                              <input type="checkbox">
+                           </td>
+                           <td>
+                              <img src="../public/images/user.jpg" alt="user.jpg">
+                           </td>
+                           <td>
+                              <div class="name">
+                                 Hồ Diên Lợi
+                              </div>
+                              <div class="function_style">
+                                 <a href="#">Hiện</a> |
+                                 <a href="#">Chỉnh sửa</a> |
+                                 <a href="customer_show.html">Chi tiết</a> |
+                                 <a href="#">Xoá</a>
+                              </div>
+                           </td>
+                           <td>0987654331</td>
+                           <td>dienloisoft@gmail.com</td>
+                        </tr>
+                     </tbody>
+                  </table>
                </div>
             </div>
          </section>
       </div>
       <!-- END CONTENT-->
-      <footer class="main-footer">
-         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.2.0
-         </div>
-         <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-         reserved.
-      </footer>
-   </div>
-   <script src="../public/jquery/jquery-3.7.0.min.js"></script>
-   <script src="../public/datatables/js/dataTables.min.js"></script>
-   <script src="../public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-   <script src="../public/dist/js/adminlte.min.js"></script>
-   <script>
-      $(document).ready(function () {
-         $('#mytable').DataTable();
-      });
-   </script>
-</body>
-
-</html>
+      <?php require_once '../views/backend/footer.php'; ?>

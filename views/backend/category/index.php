@@ -1,5 +1,10 @@
-<?php require_once '../views/backend/header.php'; ?>
-      <!-- CONTENT -->
+<?php
+use App\Models\Category;
+$list =Category::where('status','!=',0)->orderBy('created_at','DESC')->get();
+?>
+<?php require_once '../views/backend/header.php';?>
+<!-- CONTENT -->
+<form action="index.php?option=category&cat=process" method="post" enctype="multipart/form-data">
       <div class="content-wrapper">
          <section class="content-header">
             <div class="container-fluid">
@@ -14,7 +19,7 @@
          <section class="content">
             <div class="card">
                <div class="card-header text-right">
-                  <button class="btn btn-sm btn-success">
+                  <button class="btn btn-sm btn-success" type="submit" name="THEM">
                      <i class="fa fa-save" aria-hidden="true"></i>
                      Lưu
                   </button>
@@ -30,6 +35,10 @@
                         <div class="mb-3">
                            <label>Slug</label>
                            <input type="text" name="slug" id="slug" placeholder="Nhập slug" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                           <label>Mô tả</label>
+                           <textarea name="description" placeholder="Nhập slug" class="form-control"></textarea>
                         </div>
                         <div class="mb-3">
                            <label>Danh mục cha (*)</label>
@@ -55,7 +64,7 @@
                            <thead>
                               <tr>
                                  <th class="text-center" style="width:30px;">
-                                    <input type="checkbox">
+                                 <input type="checkbox">
                                  </th>
                                  <th class="text-center" style="width:130px;">Hình ảnh</th>
                                  <th>Tên danh mục</th>
@@ -63,26 +72,31 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr class="datarow">
-                                 <td>
-                                    <input type="checkbox">
-                                 </td>
-                                 <td>
-                                    <img src="../public/images/category.jpg" alt="category.jpg">
-                                 </td>
-                                 <td>
-                                    <div class="name">
-                                       Tên danh mục
-                                    </div>
-                                    <div class="function_style">
-                                       <a href="#">Hiện</a> |
-                                       <a href="#">Chỉnh sửa</a> |
-                                       <a href="../backend/category_show.html">Chi tiết</a> |
-                                       <a href="#">Xoá</a>
-                                    </div>
-                                 </td>
-                                 <td>Slug</td>
-                              </tr>
+                              <?php if(count($list)>0): ?>
+                                 <?php foreach ($list as $item) : ?>
+                                    <tr class="datarow">
+                                       <td>
+                                          <input type="checkbox">
+                                       </td>
+                                       <td>
+                                          <img src="../public/images/category/<?= $item ->image; ?>" alt="<?= $item ->image; ?>" style="width:50px;height:50px;">
+                                       </td>
+                                       <td>
+                                          <div class="name">
+                                             <?= $item ->name; ?>
+                                          </div>
+                                          <div class="function_style">
+                                             <a href="#">Hiện</a> |
+                                             <a href="#">Chỉnh sửa</a> |
+                                             <a href="../backend/category_show.html">Chi tiết</a> |
+                                             <a href="#">Xoá</a>
+                                          </div>
+                                       </td>
+                                       <td><?= $item -> slug;?></td>
+                                    </tr>
+
+                                 <?php endforeach; ?>
+                              <?php endif;?>
                            </tbody>
                         </table>
                      </div>
@@ -91,5 +105,6 @@
             </div>
          </section>
       </div>
+</form>
       <!-- END CONTENT-->
-      <?php require_once '../views/backend/footer.php'; ?>
+      <?php require_once '../views/backend/footer.php';?>

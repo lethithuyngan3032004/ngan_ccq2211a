@@ -1,15 +1,12 @@
 <?php
 use App\Models\Brand;
-//status=0--> Rac
-//status=1--> Hiện thị lên trang người dùng
-//
-//SELECT * FROM brand wher status!=0 and id=1 order by created_at desc
-
 $list = brand::where('status','!=',0)->orderBy('Created_at','DESC')->get();
 ?>
 <?php require_once "../views/backend/header.php";?>
       <!-- CONTENT -->
+      
 <form action ="index.php?option=brand&cat=process" method="post" enctype="multipart/form-data">
+
 <div class="content-wrapper">
          <section class="content-header">
             <div class="container-fluid">
@@ -20,14 +17,16 @@ $list = brand::where('status','!=',0)->orderBy('Created_at','DESC')->get();
                </div>
             </div>
          </section>
-         <!-- Main content -->
+         <!-- Main content -->=
          <section class="content">
             <div class="card">
                <div class="card-header text-right">
-                  <button class="btn btn-sm btn-success" type="submit" name="THEM">
+
+                  <button class="btn btn-sm btn-success" type="subumit"name ="THEM">
                      <i class="fa fa-save" aria-hidden="true"></i>
                      Lưu
                   </button>
+
                </div>
                <div class="card-body">
                   <div class="row">
@@ -40,11 +39,10 @@ $list = brand::where('status','!=',0)->orderBy('Created_at','DESC')->get();
                            <label>Slug</label>
                            <input type="text" name="slug" class="form-control">
                         </div>
-                        </div class="mb-3">
-                         <label>Mô tả</label>
-                         <textarea name="description" class="form-control"></textarea>
-                     </div>
-                         </label>
+                        <div class="mb-3">
+                           <label>Mô tả</label>
+                          <textarea name="description" class="form-control"></textarea>
+                        </div>
                         <div class="mb-3">
                            <label>Hình đại diện</label>
                            <input type="file" name="image" class="form-control">
@@ -65,29 +63,47 @@ $list = brand::where('status','!=',0)->orderBy('Created_at','DESC')->get();
                                     <input type="checkbox">
                                  </th>
                                  <th class="text-center" style="width:130px;">Hình ảnh</th>
-                                 <th>Tên thương hiệu</th>
+<th>Tên thương hiệu</th>
                                  <th>Tên slug</th>
                               </tr>
                            </thead>
                            <tbody>
                           <?php if(count($list) > 0) : ?>
-                              <?php foreach($list as $item   ):?>
+                              <?php foreach($list as $item):?>
                               <tr class="datarow">  
                                  <td>
                                     <input type="checkbox">
                                  </td>
                                  <td>
-                                    <img src="../public/images/brand/<?=$item->image;?>" alt="<?$item->image;?>">
+                                 <img class="img-fluid" src="../public/images/brand/<?=$item->image;?>" alt="<?$item->image;?>">
                                  </td>
                                  <td>
                                     <div class="name">
                                       <?= $item->name ; ?> 
                                     </div>
                                     <div class="function_style">
-                                       <a href="#">Hiện</a> |
-                                       <a href="#">Chỉnh sửa</a> |
-                                       <a href="../backend/brand_show.html">Chi tiết</a> |
-                                       <a href="#">Xoá</a>
+                                       <?php if ($item->status == 1) : ?>
+                                       <a href="index.php?option=brand&cat=status&id=<?=$item->id; ?>" class="btn 
+                                       btn-success btn-xs">
+                                          <i class="fas fa-toggle-on"></i> Hiện
+                                       </a>
+                                       <?php else : ?>
+                                       <a href="index.php?option=brand&cat=status&id=<?= $item->id; ?>" class="btn 
+                                       btn-danger btn-xs">
+                                          <i class="fas fa-toggle-off"></i> Ẩn
+                                       </a>
+                                       <?php endif; ?>
+                                       <a href="index.php?option=brand&cat=edit&id=<?=$item->id; ?>" class="btn btn-primary btn-xs">
+                                       <i class="fas fa-edit"></i> Chỉnh sửa
+
+                                       </a>
+                                       <a href="index.php?option=brand&cat=show&id=<?=$item->id; ?>" class="btn btn-info btn-xs">
+                                       <i class="fas fa-eye"></i> Chi tiết
+                                       </a>
+                                       <a href="index.php?option=brand&cat=delete&id=<?=$item->id; ?>" class="btn btn-danger btn-xs">
+                                       <i class="fas fa-trash"></i> Xoá
+                                          
+                                       </a>
                                     </div>
                                  </td>
                                  <td><?= $item->slug?></td>
@@ -100,8 +116,8 @@ $list = brand::where('status','!=',0)->orderBy('Created_at','DESC')->get();
                   </div>
                </div>
             </div>
-         </section>
+</section>
       </div>
 </form>
       <!-- END CONTENT-->
-      <?php require_once '../views/backend/footer.php'; ?>
+      <?php require_once "../views/backend/footer.php";?>

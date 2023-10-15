@@ -3,7 +3,7 @@
         'name' => 'lethithuyngan/shop-thoi-trang',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '67cf5c67edd8611788a0710bc9165faef7f35b75',
+        'reference' => 'eb73aa70ab07a3a9035b62bb7acd32e6b5a2913d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -121,7 +121,7 @@
         'lethithuyngan/shop-thoi-trang' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '67cf5c67edd8611788a0710bc9165faef7f35b75',
+            'reference' => 'eb73aa70ab07a3a9035b62bb7acd32e6b5a2913d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

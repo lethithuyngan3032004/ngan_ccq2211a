@@ -50,7 +50,7 @@
                </div>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#" role="button">
+               <a class="nav-link" href="logout.php" role="button">
                   <i class="fas fa-power-off"></i> Đăng xuất
                </a>
             </li>
@@ -65,10 +65,10 @@
          <div class="sidebar">
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                <div class="image">
-                  <img src="../public/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                  <img src="../public/images/user/<?= ($_SESSION['image'])??'image.png'; ?>" class="img-circle-elevation-2" alt="<?= ($_SESSION['image'])??'image.png'; ?>">
                </div>
                <div class="info">
-                  <a href="#" class="d-block">Hồ Diên Lợi</a>
+                  <a href="#" class="d-block"><?= ($_SESSION['name'])??"name"; ?></a>
                </div>
             </div>
             <nav class="mt-2">
@@ -84,19 +84,19 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="product_index.html" class="nav-link">
+                           <a href="index.php?option=product" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Tất cả sản phẩm</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="category_index.html" class="nav-link">
+                           <a href="index.php?option=category" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Danh mục</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="brand_index.html" class="nav-link">
+                           <a href="index.php?option=brand" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Thương hiệu</p>
                            </a>
@@ -113,19 +113,19 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="post_index.html" class="nav-link">
+                           <a href="index.php?option=post" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Tất cả bài viết</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="topic_index.html" class="nav-link">
+                           <a href="index.php?option=topic" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Chủ đề</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="page_index.html" class="nav-link">
+                           <a href="index.php?option=page" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Trang đơn</p>
                            </a>
@@ -142,11 +142,12 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="order_index.html" class="nav-link">
+                           <a href="index.php?option=order" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Tất cả đơn hàng</p>
                            </a>
                         </li>
+                        <!--
                         <li class="nav-item">
                            <a href="import_index.html" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
@@ -159,16 +160,17 @@
                               <p>Xuất hàng</p>
                            </a>
                         </li>
+                        !-->
                      </ul>
                   </li>
                   <li class="nav-item">
-                     <a href="customer_index.html" class="nav-link">
+                     <a href="index.php?option=customer" class="nav-link">
                         <i class="nav-icon far fa-circle text-danger"></i>
                         <p class="text">Khách hàng</p>
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="contact_index.html" class="nav-link">
+                     <a href="index.php?option=contact" class="nav-link">
                         <i class="nav-icon far fa-circle text-danger"></i>
                         <p class="text">Liên hệ</p>
                      </a>
@@ -183,13 +185,13 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="menu_index.html" class="nav-link">
+                           <a href="index.php?option=menu" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Menu</p>
                            </a>
                         </li>
                         <li class="nav-item">
-                           <a href="banner_index.html" class="nav-link">
+                           <a href="index.php?option=banner" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Banner</p>
                            </a>
@@ -206,17 +208,19 @@
                      </a>
                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                           <a href="user_index.html" class="nav-link">
+                           <a href="index.php?option=user" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Thành viên</p>
                            </a>
                         </li>
+                        <!--
                         <li class="nav-item">
                            <a href="config_index.html" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Cấu hình</p>
                            </a>
                         </li>
+                        !-->
                      </ul>
                   </li>
                   <li class="nav-header">LABELS</li>
