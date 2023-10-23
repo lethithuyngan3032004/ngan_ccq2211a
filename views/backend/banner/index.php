@@ -25,10 +25,11 @@ $list = Banner::all();
                   <table class="table table-bordered" id="mytable">
                      <thead>
                         <tr>
+                        <th>Tên banner</th>
                            <th class="text-center" style="width:30px;">
                               <input type="checkbox">
                            </th>
-                           <th>Tên banner</th>
+                           <th class="text-center" style="width:130px;">Hình ảnh</th>
                            <th>Liên kết</th>
                         </tr>
                      </thead>
@@ -39,20 +40,38 @@ $list = Banner::all();
                               <input type="checkbox">
                            </td>
                            <td>
+                                 <img class="img-fluid" src="../public/images/brand/<?=$item->image;?>" alt="<?$item->image;?>">
+                                 </td>
+                           <td>
                               <div class="name">
                               <?php echo $item->name; ?>
                               </div>
                               <div class="function_style">
-                              <?php if($item->status==1):?>
-                                          <a class="text-success" href="idex.php?option=banner&cat=status">Hiện</a> |
-                                       <?php else:?>
-                                          <a class="text-danger" href="idex.php?option=banner&cat=status&id= <?php echo $item->id; ?>">Ẩn</a> |
-                                       <?php endif;?>
-                                       <a href="idex.php?option=banner&cat=edit&id= <?php echo $item->id; ?>">Chỉnh sửa</a> |   
-                                       <a href="idex.php?option=banner&cat=show&id= <?php echo $item->id; ?>">Chi tiết</a> |
-                                       <a href="idex.php?option=banner&cat=delete&id= <?php echo $item->id; ?>">Xoá</a>
+                              <?php if ($item->status == 1) : ?>
+                                       <a href="index.php?option=banner&cat=status&id=<?=$item->id; ?>" class="btn 
+                                       btn-success btn-xs">
+                                          <i class="fas fa-toggle-on"></i> Hiện
+                                       </a>
+                                       <?php else : ?>
+                                       <a href="index.php?option=banner&cat=status&id=<?= $item->id; ?>" class="btn 
+                                       btn-danger btn-xs">
+                                          <i class="fas fa-toggle-off"></i> Ẩn
+                                       </a>
+                                       <?php endif; ?>
+                                       <a href="index.php?option=banner&cat=edit&id=<?=$item->id; ?>" class="btn btn-primary btn-xs">
+                                       <i class="fas fa-edit"></i> Chỉnh sửa
+
+                                       </a>
+                                       <a href="index.php?option=banner&cat=show&id=<?=$item->id; ?>" class="btn btn-info btn-xs">
+                                       <i class="fas fa-eye"></i> Chi tiết
+                                       </a>
+                                       <a href="index.php?option=banner&cat=delete&id=<?=$item->id; ?>" class="btn btn-danger btn-xs">
+                                       <i class="fas fa-trash"></i> Xoá
+                                          
+                                       </a>
                               </div>
                            </td>
+                           <td><?= $item->slug?></td>
                            <td>lien-ket</td>
                         </tr>
                         <?php endforeach;?>

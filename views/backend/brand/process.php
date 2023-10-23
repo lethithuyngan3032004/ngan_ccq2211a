@@ -31,6 +31,7 @@ if(strlen($_FILES['image']['name'])>0)
     $brand->save();
     header("location:index.php?option=brand");
 }
+//-----------------------------------------------------------------
 
 if(isset($_POST['CAPNHAT'])){
     $id=$_POST ['id'];
@@ -63,7 +64,6 @@ if(strlen($_FILES['image']['name'])>0)
 //tự sinh ra
     $brand->updated_at= date('Y-m-d H:i:s');
     $brand->updated_by= (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 1;
-    
     var_dump($brand);
     //lưu vào csdl
     $brand->save();

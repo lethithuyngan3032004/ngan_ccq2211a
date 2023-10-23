@@ -28,6 +28,7 @@ $list =Category::where('status','!=',0)->orderBy('created_at','DESC')->get();
                   <div class="row">
                      <div class="col-md-4">
                         <div class="mb-3">
+                      
                            <label>Tên danh mục (*)</label>
                            <input type="text" name="name" id="name" placeholder="Nhập tên danh mục" class="form-control"
                               onkeydown="handle_slug(this.value);">
@@ -86,10 +87,28 @@ $list =Category::where('status','!=',0)->orderBy('created_at','DESC')->get();
                                              <?= $item ->name; ?>
                                           </div>
                                           <div class="function_style">
-                                             <a href="#">Hiện</a> |
-                                             <a href="#">Chỉnh sửa</a> |
-                                             <a href="../backend/category_show.html">Chi tiết</a> |
-                                             <a href="#">Xoá</a>
+                                       <?php if ($item->status == 1) : ?>
+                                       <a href="index.php?option=category&cat=status&id=<?=$item->id; ?>" class="btn 
+                                       btn-success btn-xs">
+                                          <i class="fas fa-toggle-on"></i> Hiện
+                                       </a>
+                                       <?php else : ?>
+                                       <a href="index.php?option=category&cat=status&id=<?= $item->id; ?>" class="btn 
+                                       btn-danger btn-xs">
+                                          <i class="fas fa-toggle-off"></i> Ẩn
+                                       </a>
+                                       <?php endif; ?>
+                                          <a href="index.php?option=category&cat=edit&id=<?=$item->id; ?>" class="btn btn-primary btn-xs">
+                                       <i class="fas fa-edit"></i> Chỉnh sửa
+
+                                       </a>
+                                       <a href="index.php?option=category&cat=show&id=<?=$item->id; ?>" class="btn btn-info btn-xs">
+                                       <i class="fas fa-eye"></i> Chi tiết
+                                       </a>
+                                       <a href="index.php?option=category&cat=delete&id=<?=$item->id; ?>" class="btn btn-danger btn-xs">
+                                       <i class="fas fa-trash"></i> Xoá
+                                          
+                                       </a>
                                           </div>
                                        </td>
                                        <td><?= $item -> slug;?></td>

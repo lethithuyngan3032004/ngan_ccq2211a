@@ -67,10 +67,29 @@ $list = Product::join('category', 'product.category_id', '=', 'category.id')
                                     
                                  </div>
                                  <div class="function_style">
-                                    <a href="#">Hiện</a> |
-                                    <a href="#">Chỉnh sửa</a> |
-                                    <a href="index.php?option=product&cat=show">Chi tiết</a> |
-                                    <a href="#">Xoá</a>
+                                       <?php if ($item->status == 1) : ?>
+                                       <a href="index.php?option=brand&cat=status&id=<?=$item->id; ?>" class="btn 
+                                       btn-success btn-xs">
+                                          <i class="fas fa-toggle-on"></i> Hiện
+                                       </a>
+                                       <?php else : ?>
+                                       <a href="index.php?option=brand&cat=status&id=<?= $item->id; ?>" class="btn 
+                                       btn-danger btn-xs">
+                                          <i class="fas fa-toggle-off"></i> Ẩn
+                                       </a>
+                                       <?php endif; ?>
+                                       <a href="index.php?option=brand&cat=edit&id=<?=$item->id; ?>" class="btn btn-primary btn-xs">
+                                       <i class="fas fa-edit"></i> Chỉnh sửa
+
+                                       </a>
+                                       <a href="index.php?option=product&cat=show"  class="btn btn-info btn-xs">
+                                       <i class="fas fa-eye"></i> Chi tiết
+                                       </a>
+                                       <a href="index.php?option=brand&cat=delete&id=<?=$item->id; ?>" class="btn btn-danger btn-xs">
+                                       <i class="fas fa-trash"></i> Xoá
+                                          
+                                       </a>
+                                   
                                  </div>
                               </td>
                            

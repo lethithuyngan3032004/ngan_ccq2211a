@@ -22,7 +22,7 @@ if($brand==null){
                </div>
             </div>
          </section>
-         <!-- Main content -->=
+         <!-- Main content -->
          <section class="content">
             <div class="card">
                <div class="card-header text-right">
@@ -62,7 +62,7 @@ if($brand==null){
                            <select name="status" class="form-control">
                               <option value="1" <?= ($brand->status==1)?'selected':''; ?>>Xuất bản</option>
                               <option value="2" <?= ($brand->status==2)?'selected':''; ?> >Chưa xuất bản</option>
-</select>
+                        </select>
                         </div>
                      </div>
 

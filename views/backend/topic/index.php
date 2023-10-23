@@ -58,7 +58,7 @@ $list = topic::where('status','!=',0)->orderBy('Created_at','DESC')->get();
                                  </th>
                                  <th>Tên chủ đề</th>
                                  <th>Tên slug</th>
-                                 <th>Ngày tạo</th>
+                        
                               </tr>
                            </thead>
                            <tbody>
